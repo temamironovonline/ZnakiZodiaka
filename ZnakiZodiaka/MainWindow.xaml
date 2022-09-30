@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZnakiZodiaka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="550">
+        Title="Гороскопы" Height="350" Width="550" MaxWidth="550" MinWidth="550" MinHeight="350" MaxHeight="350">
 
     
     <Grid>
@@ -63,8 +63,9 @@
             <Button Style="{StaticResource controlButton}" Margin="5" Click="backToMainFromGor_Click">Назад</Button>
         </StackPanel>
 
-        <StackPanel x:Name="vostGoroskopRight"  Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
-            <TextBlock>Абоба</TextBlock>
+        <StackPanel x:Name="vostGoroskopRight"  Grid.Row="1" Grid.Column="1" Visibility="Collapsed" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource secondText}" x:Name="textVost" Margin="10">Кто ты воин?</TextBlock>
+            <Image Grid.Row="1" Grid.Column="1" Width="250" x:Name="signsVost"></Image>
         </StackPanel>
     </Grid>
 
