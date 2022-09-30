@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZnakiZodiaka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="450">
+        Title="MainWindow" Height="350" Width="550">
+
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
@@ -15,28 +17,27 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+
+        
+        <TextBlock Grid.Row="0" x:Name="mainTitle" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{StaticResource firstText}">Волшебное магичество</TextBlock>
+        <Image Grid.Row="1" Grid.Column="0" Source="Resources\Zodiags.png" Width="130" x:Name="pictureZodiag"></Image>
+        <Image Grid.Row="1" Grid.Column="1" Source="Resources\Calendar.png" Width="130" x:Name="pictureCalendar"></Image>
+        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="textZodiag" Margin="40" Style="{StaticResource firstText}">Знаки зодиака</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="textCalendar" Margin="40" Style="{StaticResource firstText}">Восточный гороскоп</TextBlock>
+        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource RoundButton}" Content="" x:Name="buttonZodiag" Click="choiceZnak_Click"></Button>
+        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundButton}" Content="" x:Name="buttonCalendar" Click="choiceCalendar_Click"></Button>
         
         
-        
-        
-        <TextBlock Grid.Row="0" x:Name="mainTitle">Волшебное магичество</TextBlock>
-        <Image Grid.Row="1" Grid.Column="0" Source="Resources\Calendar.png" Width="100" x:Name="pictureZodiag" Visibility="Collapsed"></Image>
-        <Image Grid.Row="1" Grid.Column="1" Source="Resources\Zodiags.png" Width="100" x:Name="pictureCalendat"  Visibility="Collapsed"></Image>
-        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="textZodiag" Visibility="Collapsed">Знаки зодиака</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="textCalendar" Visibility="Collapsed">Календарь</TextBlock>
-        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource RoundButton}" Content="" x:Name="buttonZodiag" Visibility="Collapsed"></Button>
-        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundButton}" Content="" x:Name="buttonCalendar" Visibility="Collapsed"></Button>
-        
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <TextBlock>Введите Ваш день рождения (число)</TextBlock>
-            <TextBox x:Name="birthDay" MaxLength="2" Width="40" Height="20" Margin="5" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
-            <TextBlock>Выберете месяц рождения</TextBlock>
+        <StackPanel x:Name="znakZodiakaLeft"  Grid.Row="1" Grid.Column="0" Visibility="Collapsed" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource secondText}">Введите Ваш день рождения (число)</TextBlock>
+            <TextBox x:Name="birthDay" MaxLength="2" Width="40" Height="20" Margin="5" PreviewTextInput="day_PreviewTextInput"></TextBox>
+            <TextBlock Style="{StaticResource secondText}">Выберете месяц рождения</TextBlock>
             <ComboBox x:Name="monthsList" Width="150" Margin="5">
                 <TextBlock>Январь</TextBlock>
                 <TextBlock>Февраль</TextBlock>
                 <TextBlock>Март</TextBlock>
                 <TextBlock>Апрель</TextBlock>
-                <TextBlock>Март</TextBlock>
+                <TextBlock>Май</TextBlock>
                 <TextBlock>Июнь</TextBlock>
                 <TextBlock>Июль</TextBlock>
                 <TextBlock>Август</TextBlock>
@@ -45,9 +46,26 @@
                 <TextBlock>Ноябрь</TextBlock>
                 <TextBlock>Декабрь</TextBlock>
             </ComboBox>
-            <Button Width="100" Height="20" Margin="10" Click="Button_Click">Рассчитать</Button>
+            <Button Style="{StaticResource controlButton}" Margin="10" Click="calculateZnak_Click" >Рассчитать</Button>
+            <Button Style="{StaticResource controlButton}" Margin="5" Click="backToMainFromZodiag_Click">Назад</Button>
+        </StackPanel>
+        
+        
+        <StackPanel x:Name="znakZodiakaRight" Grid.Row="1" Grid.Column="1" Visibility="Collapsed" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource secondText}" Margin="10" x:Name="signText">Кто ты, воин?</TextBlock>
+            <Image Grid.Row="1" Grid.Column="0" Width="250" x:Name="signs"></Image>
+        </StackPanel>
 
+        <StackPanel x:Name="vostGoroskopLeft"  Grid.Row="1" Grid.Column="0" Visibility="Collapsed" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource secondText}">Введите Ваш год рождения</TextBlock>
+            <TextBox x:Name="birthYear" MaxLength="4" Width="40" Height="20" Margin="5" PreviewTextInput="year_PreviewTextInput"></TextBox>
+            <Button Style="{StaticResource controlButton}" Margin="10" Click="calculateGor_Click">Рассчитать</Button>
+            <Button Style="{StaticResource controlButton}" Margin="5" Click="backToMainFromGor_Click">Назад</Button>
+        </StackPanel>
+
+        <StackPanel x:Name="vostGoroskopRight"  Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+            <TextBlock>Абоба</TextBlock>
         </StackPanel>
     </Grid>
-    
+
 </Window>

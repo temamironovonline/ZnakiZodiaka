@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ZnakiZodiaka
 {
@@ -23,9 +14,11 @@ namespace ZnakiZodiaka
         public MainWindow()
         {
             InitializeComponent();
+            this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Resources/bg.jpg")));
+
         }
 
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void day_PreviewTextInput(object sender, TextCompositionEventArgs e) // ВВОД ТОЛЬКО ЦИФР
         {
             char c = Convert.ToChar(e.Text);
             if (Char.IsNumber(c))
@@ -35,12 +28,185 @@ namespace ZnakiZodiaka
             base.OnPreviewTextInput(e);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void calculateZnak_Click(object sender, RoutedEventArgs e)
         {
-           int day = Convert.ToInt32(birthDay.Text);
-           string month = monthsList.Text;
-            if (Convert.ToInt32(day) > 31) MessageBox.Show($"Число {day} не является корректным для Дня Рождения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            
+            int day = Convert.ToInt32(birthDay.Text);
+            string month = monthsList.Text;
+
+            //БЛОК ПРОВЕРКИ НА КОРРЕКТНОСТЬ ВВОДИМОГО ДНЯ
+
+            if (Convert.ToInt32(day) > 31) MessageBox.Show($"Число {day} не является корректным для календарного дня", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            if ((month == "Апрель" || month == "Июнь" || month == "Сентябрь" || month == "Ноябрь") && day > 30)
+                MessageBox.Show($"В данном месяце всего 30 дней!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (month == "Февраль" && day > 28)
+                MessageBox.Show($"В данном месяце всего 28 дней!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            //БЛОК РАССЧЕТА ЗНАКА ЗОДИАКА
+
+            if ((month == "Март" && day >= 21) || (month == "Апрель" && day <= 20))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/aries.png"));
+                signText.Text = "ОВЕН";
+                signText.Foreground = Brushes.Yellow;
+            }
+            if ((month == "Апрель" && day >= 21) || (month == "Май" && day <= 21))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/taurus.png"));
+                signText.Text = "ТЕЛЕЦ";
+                signText.Foreground = Brushes.Blue;
+            }
+            if ((month == "Май" && day >= 22) || (month == "Июнь" && day <= 21))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/gemini.png"));
+                signText.Text = "БЛИЗНЕЦЫ";
+                signText.Foreground = Brushes.Brown;
+            }
+            if ((month == "Июнь" && day >= 22) || (month == "Июль" && day <= 22))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/cancer.png"));
+                signText.Text = "РАК";
+                signText.Foreground = Brushes.Purple;
+            }
+            if ((month == "Июль" && day >= 23) || (month == "Август" && day <= 23))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/leo.png"));
+                signText.Text = "ЛЕВ";
+                signText.Foreground = Brushes.Brown;
+            }
+            if ((month == "Август" && day >= 24) || (month == "Сентябрь" && day <= 22))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/virgo.png"));
+                signText.Text = "ДЕВА";
+                signText.Foreground = Brushes.Pink;
+            }
+            if ((month == "Сентябрь" && day >= 23) || (month == "Октябрь" && day <= 22))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/libra.png"));
+                signText.Text = "ВЕСЫ";
+                signText.Foreground = Brushes.Green;
+            }
+            if ((month == "Октябрь" && day >= 23) || (month == "Ноябрь" && day <= 22))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/scorpio.png"));
+                signText.Text = "СКОРПИОН";
+                signText.Foreground = Brushes.OrangeRed;
+            }
+            if ((month == "Ноябрь" && day >= 23) || (month == "Декабрь" && day <= 21))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/sagittarius.png"));
+                signText.Text = "СТРЕЛЕЦ";
+                signText.Foreground = Brushes.Violet;
+            }
+            if ((month == "Декабрь" && day >= 22) || (month == "Январь" && day <= 20))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/capricorn.png"));
+                signText.Text = "КОЗЕРОГ";
+                signText.Foreground = Brushes.Brown;
+            }
+            if ((month == "Январь" && day >= 21) || (month == "Февраль" && day <= 19))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/aquarius.png"));
+                signText.Text = "ВОДОЛЕЙ";
+                signText.Foreground = Brushes.Turquoise;
+                
+            }
+            if ((month == "Февраль" && day >= 20) || (month == "Март" && day <= 20))
+            {
+                signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/fish.png"));
+                signText.Text = "РЫБЫ";
+                signText.Foreground = Brushes.Blue;
+            }
         }
+
+        private void year_PreviewTextInput(object sender, TextCompositionEventArgs e) // ВВОД ТОЛЬКО ЦИФР
+        {
+            char c = Convert.ToChar(e.Text);
+            if (Char.IsNumber(c))
+                e.Handled = false;
+            else
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
+        }
+
+        private void calculateGor_Click(object sender, RoutedEventArgs e)
+        {
+            int year = Convert.ToInt32(birthYear.Text);
+            string[] signs = { "Крыса", "Бык", "Тигр", "Кот", "Дракон", "Змея", "Лошадь", "Коза", "Обезьяна", "Петух", "Собака", "Кабан" };
+            int a;
+            int sign = 0;
+            if (year >= 1900)
+            {
+                a = 1899;
+                while (a < year)
+                {
+                    for (int i = 0; i < 12 && a < year; i++)
+                    {
+                        a++;
+                        sign = i;
+                    }
+                }
+            }
+            if (year < 1900)
+            {
+                a = 1900;
+                while (a > year)
+                {
+                    for (int i = 11; i > 0 && a > year; i--)
+                    {
+                        a--;
+                        sign = i;
+                    }
+                }
+            }
+            MessageBox.Show($"{signs[sign]}");
+        }
+
+        private void choiceZnak_Click(object sender, RoutedEventArgs e)
+        {
+            pictureZodiag.Visibility = Visibility.Collapsed;
+            textZodiag.Visibility = Visibility.Collapsed;
+            buttonZodiag.Visibility = Visibility.Collapsed;
+            pictureCalendar.Visibility = Visibility.Collapsed;
+            textCalendar.Visibility = Visibility.Collapsed;
+            buttonCalendar.Visibility = Visibility.Collapsed;
+            znakZodiakaLeft.Visibility = Visibility.Visible;
+            znakZodiakaRight.Visibility = Visibility.Visible;
+        }
+
+        private void choiceCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            pictureZodiag.Visibility = Visibility.Collapsed;
+            textZodiag.Visibility = Visibility.Collapsed;
+            buttonZodiag.Visibility = Visibility.Collapsed;
+            pictureCalendar.Visibility = Visibility.Collapsed;
+            textCalendar.Visibility = Visibility.Collapsed;
+            buttonCalendar.Visibility = Visibility.Collapsed;
+            vostGoroskopLeft.Visibility = Visibility.Visible;
+            vostGoroskopRight.Visibility = Visibility.Visible;
+        }
+
+        private void backToMainFromZodiag_Click(object sender, RoutedEventArgs e)
+        {
+            znakZodiakaLeft.Visibility = Visibility.Collapsed;
+            znakZodiakaRight.Visibility = Visibility.Collapsed;
+            pictureZodiag.Visibility = Visibility.Visible;
+            textZodiag.Visibility = Visibility.Visible;
+            buttonZodiag.Visibility = Visibility.Visible;
+            pictureCalendar.Visibility = Visibility.Visible;
+            textCalendar.Visibility = Visibility.Visible;
+            buttonCalendar.Visibility = Visibility.Visible;
+        }
+        private void backToMainFromGor_Click(object sender, RoutedEventArgs e)
+        {
+            vostGoroskopLeft.Visibility = Visibility.Collapsed;
+            vostGoroskopRight.Visibility = Visibility.Collapsed;
+            pictureZodiag.Visibility = Visibility.Visible;
+            textZodiag.Visibility = Visibility.Visible;
+            buttonZodiag.Visibility = Visibility.Visible;
+            pictureCalendar.Visibility = Visibility.Visible;
+            textCalendar.Visibility = Visibility.Visible;
+            buttonCalendar.Visibility = Visibility.Visible;
+        }
+        
     }
 }

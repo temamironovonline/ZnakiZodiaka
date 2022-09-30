@@ -100,5 +100,42 @@
   <ItemGroup>
     <Resource Include="Resources\Calendar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\aquarius.png" />
+    <Resource Include="Resources\aries.png" />
+    <Resource Include="Resources\cancer.png" />
+    <Resource Include="Resources\capricorn.png" />
+    <Resource Include="Resources\fish.png" />
+    <Resource Include="Resources\gemini.png" />
+    <Resource Include="Resources\leo.png" />
+    <Resource Include="Resources\libra.png" />
+    <Resource Include="Resources\sagittarius.png" />
+    <Resource Include="Resources\scorpio.png" />
+    <Resource Include="Resources\taurus.png" />
+    <Resource Include="Resources\virgo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bg2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bg3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bull.png" />
+    <Resource Include="Resources\cock.png" />
+    <Resource Include="Resources\dog.png" />
+    <Resource Include="Resources\dragon.png" />
+    <Resource Include="Resources\goat.png" />
+    <Resource Include="Resources\hog.png" />
+    <Resource Include="Resources\horse.png" />
+    <Resource Include="Resources\monkey.png" />
+    <Resource Include="Resources\rabbit.png" />
+    <Resource Include="Resources\rat.png" />
+    <Resource Include="Resources\snake.png" />
+    <Resource Include="Resources\tiger.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
