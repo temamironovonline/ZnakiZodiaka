@@ -89,7 +89,7 @@ namespace ZnakiZodiaka
                 {
                     signs.Source = BitmapFrame.Create(new Uri(@"pack://application:,,,/Resources/libra.png"));
                     signText.Text = "ВЕСЫ";
-                    signText.Foreground = Brushes.Green;
+                    signText.Foreground = Brushes.LightGreen;
                 }
                 else if ((month == "Октябрь" && day >= 23) || (month == "Ноябрь" && day <= 22))
                 {
