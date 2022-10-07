@@ -166,7 +166,7 @@ namespace ZnakiZodiaka
                         a = 1900;
                         while (a > year)
                         {
-                            for (int i = 11; i > 0 && a > year; i--)
+                            for (int i = 11; i >= 0 && a > year; i--)
                             {
                                 a--;
                                 sign = i;
